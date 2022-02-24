@@ -10,7 +10,7 @@ CREATE TABLE users (username VARCHAR(255) PRIMARY KEY,
 INSERT INTO users (username, password)
     VALUES ("Amelia-Earhart","Youaom139&yu7");
 INSERT INTO users (username, password)
-    VALUES ("Amelia-Earhart","StarWars2*");
+    VALUES ("Otto","StarWars2*");
 ```
 
 ```sql
@@ -21,13 +21,13 @@ CREATE TABLE ratings (id INT(1) PRIMARY KEY AUTO_INCREMENT,
 
 
 INSERT INTO ratings (username, song, rating)
-    VALUES (1, "Amelia-Earhart", "Freeway", 3);
+    VALUES ("Amelia-Earhart", "Freeway", 3);
 INSERT INTO ratings (username, song, rating)
-    VALUES (2, "Amelia-Earhart", "Days of Wine and Roses", 4);
+    VALUES ("Amelia-Earhart", "Days of Wine and Roses", 4);
 INSERT INTO ratings (username, song, rating)
-    VALUES (3, "Otto", "Days of Wine and Roses", 5);
+    VALUES ("Otto", "Days of Wine and Roses", 5);
 INSERT INTO ratings (username, song, rating)
-    VALUES (4, "Amelia-Earhart", "These Walls", 4);
+    VALUES ("Amelia-Earhart", "These Walls", 4);
 ```
 
 ```sql
