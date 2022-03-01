@@ -16,25 +16,6 @@ INSERT INTO users (username, password)
 ```
 
 ```sql
-CREATE TABLE ratings (
-    id INT(1) PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) FOREIGN KEY REFERENCES users(username) ON DELETE CASCADE,
-    song VARCHAR(255) FOREIGN KEY REFERENCES artists(song) ON DELETE CASCADE,
-    rating INT(1)
-    );
-
-
-INSERT INTO ratings (username, song, rating)
-    VALUES ("Amelia-Earhart", "Freeway", 3);
-INSERT INTO ratings (username, song, rating)
-    VALUES ("Amelia-Earhart", "Days of Wine and Roses", 4);
-INSERT INTO ratings (username, song, rating)
-    VALUES ("Otto", "Days of Wine and Roses", 5);
-INSERT INTO ratings (username, song, rating)
-    VALUES ("Amelia-Earhart", "These Walls", 4);
-```
-
-```sql
 CREATE TABLE artists (
     song VARCHAR(255) PRIMARY KEY,
     artist VARCHAR(255)
@@ -46,4 +27,24 @@ INSERT INTO artists (song, artist)
     VALUES ("Days of Wine and Roses", "Bill Evans");
 INSERT INTO artists (song, artist)
     VALUES ("These Walls", "Kendrick Lamar");
+```
+```sql
+CREATE TABLE ratings (
+    id INT(1) PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255),
+    song VARCHAR(255),
+    rating INT(1),
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE,
+    FOREIGN KEY (song) REFERENCES artists(song) ON DELETE CASCADE
+    );
+
+
+INSERT INTO ratings (username, song, rating)
+    VALUES ("Amelia-Earhart", "Freeway", 3);
+INSERT INTO ratings (username, song, rating)
+    VALUES ("Amelia-Earhart", "Days of Wine and Roses", 4);
+INSERT INTO ratings (username, song, rating)
+    VALUES ("Otto", "Days of Wine and Roses", 5);
+INSERT INTO ratings (username, song, rating)
+    VALUES ("Amelia-Earhart", "These Walls", 4);
 ```
