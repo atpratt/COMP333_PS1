@@ -1,3 +1,4 @@
+Andrew Pratt, Silvia Mayo, Wilson McCloy
 For the tables to work with the hw2_music_database.php,
 first create a database named music-db via phpMyAdmin.
 
