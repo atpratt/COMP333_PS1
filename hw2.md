@@ -13,9 +13,8 @@ INSERT INTO users (username, password)
     VALUES ("Amelia-Earhart","Youaom139&yu7");
 INSERT INTO users (username, password)
     VALUES ("Otto","StarWars2*");
-```
 
-```sql
+
 CREATE TABLE artists (
     song VARCHAR(255) PRIMARY KEY,
     artist VARCHAR(255)
@@ -27,8 +26,8 @@ INSERT INTO artists (song, artist)
     VALUES ("Days of Wine and Roses", "Bill Evans");
 INSERT INTO artists (song, artist)
     VALUES ("These Walls", "Kendrick Lamar");
-```
-```sql
+
+
 CREATE TABLE ratings (
     id INT(1) PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
@@ -37,7 +36,6 @@ CREATE TABLE ratings (
     FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE,
     FOREIGN KEY (song) REFERENCES artists(song) ON DELETE CASCADE
     );
-
 
 INSERT INTO ratings (username, song, rating)
     VALUES ("Amelia-Earhart", "Freeway", 3);
