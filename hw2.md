@@ -4,8 +4,10 @@ first create a database named music-db via phpMyAdmin.
 Once you have done that, set up three tables for users, ratings, artists:
 
 ```sql
-CREATE TABLE users (username VARCHAR(255) PRIMARY KEY,
-    password VARCHAR(255));
+CREATE TABLE users (
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+    );
 
 INSERT INTO users (username, password)
     VALUES ("Amelia-Earhart","Youaom139&yu7");
@@ -14,10 +16,12 @@ INSERT INTO users (username, password)
 ```
 
 ```sql
-CREATE TABLE ratings (id INT(1) PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255),
+CREATE TABLE ratings (
+    id INT(1) PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) FOREIGN KEY REFERENCES users(usernamne) ON DELETE CASCADE,
     song VARCHAR(255),
-    rating INT(1));
+    rating INT(1)
+    );
 
 
 INSERT INTO ratings (username, song, rating)
@@ -31,8 +35,10 @@ INSERT INTO ratings (username, song, rating)
 ```
 
 ```sql
-CREATE TABLE artists (song VARCHAR(255) PRIMARY KEY,
-    artist VARCHAR(255));
+CREATE TABLE artists (
+    song VARCHAR(255) PRIMARY KEY,
+    artist VARCHAR(255)
+    );
 
 INSERT INTO artists (song, artist)
     VALUES ("Freeway", "Aimee Mann");
