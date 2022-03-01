@@ -19,7 +19,7 @@ INSERT INTO users (username, password)
 CREATE TABLE ratings (
     id INT(1) PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) FOREIGN KEY REFERENCES users(username) ON DELETE CASCADE,
-    song VARCHAR(255),
+    song VARCHAR(255) FOREIGN KEY REFERENCES artists(song) ON DELETE CASCADE,
     rating INT(1)
     );
 
