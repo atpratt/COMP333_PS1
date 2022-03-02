@@ -13,8 +13,10 @@ You do not need to populate the database with songs through an HTML form; you ca
 <html lang="en">
 <head>
 
-  <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
-<title>COMP333_PS2</title>
+<meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
+
+<title>COMP333 HW2</title>
+<link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
