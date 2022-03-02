@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+
+.forms{
+	border: 10px solid lightslategray;
+	background-color: lightgoldenrodyellow;
+	padding: 40px;
+	text-align: center;
+	color: black;
+	font-family: 'Roboto Mono', monospace;
+	display: table;
+	margin: auto;
+}
+
+h1 {
+    font-size: 40px;
+    flex-wrap: wrap;
+    color: black;
+}
+
+input{
+	background-color: lightgoldenrodyellow;
+	border: 10px;
+	margin: auto;
+	text-align: center;
+    display: block;
+    color: black;
+}
+body{
+	background-color: lightgoldenrodyellow;
+}
