@@ -35,70 +35,111 @@ You do not need to populate the database with songs through an HTML form; you ca
     #Trying to connect to server
     if ($conn->connect_error) {
       // Exit with the error message.
-      // . is used to concatenate strings.
-      die("Connection failed: " . $conn->connect_error);
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // `isset` — Function to determine if a variable is declared and is different than null.
-    // $_REQUEST is a PHP super global variable which is used to collect data after submitting an HTML form.
-    #User Registration
-    if(isset($_REQUEST["submit"])){
+    
+    #Registration
+    if(isset($_REQUEST["Registration"])){
       // Variables for the output and the web form below.
-      $out_value = "";
-      $username = $_REQUEST['Username'];
-      $password = $_REQUEST['Password'];
+        $out_reg = "";
+        $username = $_REQUEST['Username'];
+        $password = $_REQUEST['Password'];
 
-      // The following is the core part of this script where we connect PHP
-      // and SQL.
       // Check that the user entered data in the form.
-      if(!empty($username) && !empty($password)){
-        // If so, prepare SQL query with the data.
-        $sql_query = "SELECT * FROM users WHERE Username = ('$username')"; #AND test = ('$password')";
-        // Send the query and obtain the result.
-        // mysqli_query performs a query against the database.
-        $result = mysqli_query($conn, $sql_query);
-        // mysqli_fetch_assoc returns an associative array that corresponds to the
-        // fetched row or NULL if there are no more rows.
-        // Probably does not make much of a difference here, but, e.g., if there are
-        // multiple rows returned, you can iterate over those with a loop.
+        if(!empty($username) && !empty($password)){
+            $sql_query = "SELECT * FROM users WHERE Username = ('$username')";
+            $result = mysqli_query($conn, $sql_query);
+            $userrow = mysqli_fetch_assoc($result);
 
-		//for each over result
+            if (mysqli_num_rows($result) >= 1) {
+                $out_reg = "The username " . $username . " has already been taken.  Please choose a different username.";
+            }
 
-        if (mysqli_fetch_assoc($result) > 0) {
-          $out_value = "The username " . $username . " is taken.  Please choose a different username.";
+            else {
+                $sql_query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+                $result = mysqli_query($conn, $sql_query);
+                if (mysqli_num_rows($result) > 0){
+                    $out_reg = "Successfully registered user " . $username;
+                }
+                else {
+                    $out_reg = "An error has occurred and " . $username . " has not been regoistered.";
+                }
+            }
         }
-		//return array/list and we should be able to itterate over to get songs
 
-      else {
-        $out_value = "No raitings available!";
-      }
+        else {
+            $out_reg = "You'll need to enter a username and password!";
+        }
+    }
+
+    #Song Retrieval
+    if(isset($_REQUEST["Song_Retrieval"])) {
+        $out_song = "";
+        $username = $_REQUEST["Rater"];
+
+        #if some usernamne entered
+        if(!empty($username)){
+            #Check usernamne in db, query users table
+            $sql_query = "SELECT * FROM users WHERE username = ('$username')";
+            $result = mysqli_query($conn, $sql_query);
+            #if usernname in db
+            if (mysqli_num_rows($result) >= 1) {
+                #query ratings table
+                $sql_query = "SELECT * FROM ratings WHERE username = ('$username')";
+                $result = mysqli_query($conn, $sql_query);
+                #check if there are any ratings for that username
+                if (mysqli_num_rows($result) >= 1) {
+                    #print each song and its rating
+                    while($ratings = mysqli_fetch_assoc($result)) {
+                        $out_song = $out_song . $ratings["song"] . " has been rated " . $ratings["rating"] . "<br>";
+                    }
+                }
+                #if no ratings for that username
+                else {
+                    $out_song = "The user " . $username . " has no ratings yet.";
+                }
+
+
+            }
+        }
+            #if username not in db
+            else {
+                $out_song = "Username " . $username . " has not yet been registered."
+            }
+    }
+    #if no username entered
+    else {
+      $out_song = "First you'll need to enter a username."
     }
 
     $conn->close();
   ?>
 
-  <!--
-    HTML code for the form by which the user can query data.
-    Note that we are using names (to pass values around in PHP) and not ids
-    (which are for CSS styling or JavaScript functionality).
-    You can leave the action in the form open
-    (https://stackoverflow.com/questions/1131781/is-it-a-good-practice-to-use-an-empty-url-for-a-html-forms-action-attribute-a)
-  -->
+<!--HTML -->
+  <div class="forms">
+  
+  <h1> Registration </h1>
   <form method="GET" action="">
-  Username: <input type="text" name="Username" placeholder="Enter Username" /><br>
-  Password: <input type="text" name="Password" placeholder="Enter Password" /><br>
+  Username: <input type="text" name="Username" placeholder="New Username" /><br>
+  Password: <input type="text" name="Password" placeholder="New Password" /><br>
   <input type="submit" name="submit" value="Submit"/>
-  <!--
-    Make sure that there is a value available for $out_value.
-    If so, print to the screen.
-  -->
   <p><?php
-    if(!empty($out_value)){
-      echo $out_value;
-    }
-  ?></p>
+  if(!empty($out_reg)){
+      echo $out_reg;
+  ?><p>
   </form>
 
+  <h1> Song Retrieval </h1>
+  <form method="GET" action="">
+  Username: <input type="text" name="Rater" placeholder="Rater's Username" /><br>
+  <input type="submit" name="Song_Retrieval" value="Retrieve"/>
+  <p><?php
+  if(!empty($out_song)){
+      echo $out_song;
+  ?><p>
+  </form>
+  </div>
 
 </body>
 </html>
