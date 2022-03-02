@@ -14,7 +14,7 @@ You do not need to populate the database with songs through an HTML form; you ca
 <head>
 
   <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
-<title>COMP333_PS1</title>
+<title>COMP333_PS2</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@ You do not need to populate the database with songs through an HTML form; you ca
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "COMP333_PS2";
+    $dbname = "music-db";
 	//Make sure this dbname is the same as the db name in your 
 
     // Create server connection.
