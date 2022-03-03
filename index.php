@@ -1,4 +1,4 @@
-Write an index.php script using HTML, SQL, PHP that retrieves data from the music-db database 
+<!--Write an index.php script using HTML, SQL, PHP that retrieves data from the music-db database 
 that you have created under 1(b) via a graphical user interface using HTML forms.
 
 Features to Include
@@ -7,7 +7,7 @@ The submitted username and password should be written to the users table of your
 If a user enters a username that is already taken, the user should be alerted to pick a different username. (Passwords do not need to be unique)
 Upon entering a username, all songs that the user has rated, including the user’s rating should be returned. Songs that the user did not rate should not be returned.
 You do not need to populate the database with songs through an HTML form; you can assume it is already populated
-
+-->
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -20,9 +20,6 @@ You do not need to populate the database with songs through an HTML form; you ca
 </head>
 
 <body>
-  <!--
-    PHP code for retrieving data from the database.
-  -->
   <?php
     $servername = "localhost";
     $username = "root";
@@ -107,12 +104,12 @@ You do not need to populate the database with songs through an HTML form; you ca
         }
             #if username not in db
             else {
-                $out_song = "Username " . $username . " has not yet been registered."
+                $out_song = "Username " . $username . " has not yet been registered.";
             }
     }
     #if no username entered
     else {
-      $out_song = "First you'll need to enter a username."
+      $out_song = "First you'll need to enter a username.";
     }
 
     $conn->close();
@@ -129,6 +126,7 @@ You do not need to populate the database with songs through an HTML form; you ca
   <p><?php
   if(!empty($out_reg)){
       echo $out_reg;
+  }
   ?><p>
   </form>
 
@@ -139,6 +137,7 @@ You do not need to populate the database with songs through an HTML form; you ca
   <p><?php
   if(!empty($out_song)){
       echo $out_song;
+  }
   ?><p>
   </form>
   </div>
