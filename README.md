@@ -10,5 +10,5 @@ Wilson:
 
 3/2:
 -Finished index.php file
--Have NOT run it to see if it works
--Still need to implement a stylesheet named "stylesheet.css" that index.php links to
+-Have run it; there are some bugs to work out with TA/office hours
+-Implemented "stylesheet.css" that index.php links to
