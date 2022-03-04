@@ -25,89 +25,93 @@ You do not need to populate the database with songs through an HTML form; you ca
     $username = "root";
     $password = "";
     $dbname = "music-db";
-	//Make sure this dbname is the same as the db name in your
+	
 
     // Create server connection.
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check server connection.
     #Trying to connect to server
     if ($conn->connect_error) {
-      // Exit with the error message.
         die("Connection failed: " . $conn->connect_error);
     }
 
     $out_value = "";
 
     #Registration
-    if(isset($_REQUEST["Registration"])){
-      // Variables for the output and the web form below.
-        $out_reg = "";
-        $username = $_REQUEST['Username'];
-        $password = $_REQUEST['Password'];
+    if(isset($_REQUEST["Registration"])) {
+    
+        #$out_reg = "";
+        $reg_username = $_REQUEST['Username'];
+        $reg_password = $_REQUEST['Password'];
 
       // Check that the user entered data in the form.
-        if(!empty($username) && !empty($password)){
-            $sql_query = "SELECT * FROM users WHERE Username = ('$username')";
+        if(!empty($reg_username) && !empty($reg_password)) {
+            $sql_query = "SELECT * FROM users WHERE username = ('$reg_username')";
             $result = mysqli_query($conn, $sql_query);
-            $userrow = mysqli_fetch_assoc($result);
+            #$userrow = mysqli_fetch_assoc($result);
             #if username already in db
             if (mysqli_num_rows($result) > 0) {
-                $out_reg = "The username " . $username . " has already been taken.  Please choose a different username.";
+                $out_value = "The username '" . $reg_username . "' has already been taken.  Please choose a different username.";
             }
             #if new username
             else {
-                $sql_query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+                #insert username, password into db
+                $sql_query = "INSERT INTO users (username, password) VALUES ('$reg_username', '$reg_password')";
                 $result = mysqli_query($conn, $sql_query);
-                if (mysqli_num_rows($result) > 0){
-                    $out_reg = "Successfully registered user " . $username;
+                #check that new username added to db
+                $sql_query = "SELECT * FROM users WHERE username = ('$reg_username')";
+                $result = mysqli_query($conn, $sql_query);
+                #if in db
+                if (mysqli_num_rows($result) > 0) {
+                    $out_value = "Successfully registered user '" . $reg_username . "'";
                 }
+                #if not in db
                 else {
-                    $out_reg = "An error has occurred and " . $username . " has not been regoistered.";
+                    $out_value = "An error has occurred and '" . $reg_username . "' has not been registered.";
                 }
             }
         }
         else {
-            $out_reg = "You'll need to enter a username and password!";
+            $out_value = "You'll need to enter both a username and password!";
         }
     }
 
     #Song Retrieval
     if(isset($_REQUEST["Song_Retrieval"])) {
-        $out_song = "";
-        $username = $_REQUEST["Rater"];
+        #$out_song = "";
+        $retr_username = $_REQUEST["Rater"];
 
         #if some usernamne entered
-        if(!empty($username)){
+        if(!empty($retr_username)) {
             #Check usernamne in db, query users table
-            $sql_query = "SELECT * FROM users WHERE username = ('$username')";
+            $sql_query = "SELECT * FROM users WHERE username = ('$retr_username')";
             $result = mysqli_query($conn, $sql_query);
             #if usernname in db
             if (mysqli_num_rows($result) > 0) {
                 #query ratings table
-                $sql_query = "SELECT * FROM ratings WHERE username = ('$username')";
+                $sql_query = "SELECT * FROM ratings WHERE username = ('$retr_username')";
                 #$sql_query_artist = "SELECT * FROM a WHERE username = ('$username')";
                 $result = mysqli_query($conn, $sql_query);
                 #check if there are any ratings for that username
                 if (mysqli_num_rows($result) > 0) {
                     #print each song and its rating
                     while($ratings = mysqli_fetch_assoc($result)) {
-                        $out_song = $out_song . $username . " has rated '" . $ratings["song"] . "' a " . $ratings["rating"] . "." . "<br>";
+                        $out_value = $out_value . "User '" . $retr_username . "' has given the song '" . $ratings["song"] . "' a rating of " . $ratings["rating"] . "." . "<br>";
                     }
                 }
                 #if no ratings for that username
                 else {
-                    $out_song = "The user " . $username . " has no ratings yet.";
+                    $out_value = "The user '" . $retr_username . "' has no ratings yet.";
                 }
             }
             #if username not in db
             else {
-                $out_song = "Username " . $username . " has not yet been registered.";
+                $out_value = "Username '" . $retr_username . "' has not yet been registered.";
             }
         }
         #if no username entered
         else {
-            $out_song = "First you'll need to enter a username.";
+            $out_value = "First you'll need to enter a username.";
         }
     }
     $conn->close();
@@ -119,29 +123,32 @@ You do not need to populate the database with songs through an HTML form; you ca
   <h1> Registration </h1>
   <form method="GET" action="">
   Username: <input type="text" name="Username" placeholder="New Username" /><br>
-  Password: <input type="text" name="Password" placeholder="New Password" /><br>
-  <input type="submit" name="submit" value="Submit"/>
+  Password: <input type="password" name="Password" placeholder="New Password" /><br>
+  <input type="submit" name="Registration" value="Submit"/>
   <p>
   <?php
-  if(!empty($out_reg)){
-      echo $out_reg;
-  }
+  #if(!empty($out_value)){
+  #    echo $out_value;
+  #}
   ?>
   <p>
   </form>
+
 
   <h1> Song Retrieval </h1>
   <form method="GET" action="">
   Username: <input type="text" name="Rater" placeholder="Rater's Username" /><br>
   <input type="submit" name="Song_Retrieval" value="Retrieve"/>
   <p>
+  
+  </form>
+  <div>
   <?php
-  if(!empty($out_song)){
-      echo $out_song;
+  if(!empty($out_value)) {
+      echo $out_value;
   }
   ?>
   <p>
-  </form>
   </div>
 
 </body>
