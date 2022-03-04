@@ -11,9 +11,14 @@
 	display: table;
 	margin: auto;
 }
-
 h1 {
     font-size: 40px;
+    flex-wrap: wrap;
+    color: black;
+}
+
+h2 {
+    font-size: 30px;
     flex-wrap: wrap;
     color: black;
 }

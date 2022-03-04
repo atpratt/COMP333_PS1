@@ -40,7 +40,6 @@ You do not need to populate the database with songs through an HTML form; you ca
     #Registration
     if(isset($_REQUEST["Registration"])) {
     
-        #$out_reg = "";
         $reg_username = $_REQUEST['Username'];
         $reg_password = $_REQUEST['Password'];
 
@@ -48,7 +47,6 @@ You do not need to populate the database with songs through an HTML form; you ca
         if(!empty($reg_username) && !empty($reg_password)) {
             $sql_query = "SELECT * FROM users WHERE username = ('$reg_username')";
             $result = mysqli_query($conn, $sql_query);
-            #$userrow = mysqli_fetch_assoc($result);
             #if username already in db
             if (mysqli_num_rows($result) > 0) {
                 $out_value = "The username '" . $reg_username . "' has already been taken.  Please choose a different username.";
@@ -71,6 +69,7 @@ You do not need to populate the database with songs through an HTML form; you ca
                 }
             }
         }
+        #if either username, password left blank
         else {
             $out_value = "You'll need to enter both a username and password!";
         }
@@ -78,7 +77,7 @@ You do not need to populate the database with songs through an HTML form; you ca
 
     #Song Retrieval
     if(isset($_REQUEST["Song_Retrieval"])) {
-        #$out_song = "";
+       
         $retr_username = $_REQUEST["Rater"];
 
         #if some usernamne entered
@@ -114,28 +113,22 @@ You do not need to populate the database with songs through an HTML form; you ca
             $out_value = "First you'll need to enter a username.";
         }
     }
+
     $conn->close();
   ?>
 
 <!--HTML -->
   <div class="forms">
-
-  <h1> Registration </h1>
+  <h1> Music Database </h1>
+  <h2> Registration </h2>
   <form method="GET" action="">
   Username: <input type="text" name="Username" placeholder="New Username" /><br>
   Password: <input type="password" name="Password" placeholder="New Password" /><br>
   <input type="submit" name="Registration" value="Submit"/>
-  <p>
-  <?php
-  #if(!empty($out_value)){
-  #    echo $out_value;
-  #}
-  ?>
-  <p>
   </form>
 
 
-  <h1> Song Retrieval </h1>
+  <h2> Song Retrieval </h2>
   <form method="GET" action="">
   Username: <input type="text" name="Rater" placeholder="Rater's Username" /><br>
   <input type="submit" name="Song_Retrieval" value="Retrieve"/>
