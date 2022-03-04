@@ -1,4 +1,4 @@
-<!--Write an index.php script using HTML, SQL, PHP that retrieves data from the music-db database 
+<!--Write an index.php script using HTML, SQL, PHP that retrieves data from the music-db database
 that you have created under 1(b) via a graphical user interface using HTML forms.
 
 Features to Include
@@ -37,7 +37,8 @@ You do not need to populate the database with songs through an HTML form; you ca
         die("Connection failed: " . $conn->connect_error);
     }
 
-    
+    $out_value = "";
+
     #Registration
     if(isset($_REQUEST["Registration"])){
       // Variables for the output and the web form below.
@@ -51,7 +52,7 @@ You do not need to populate the database with songs through an HTML form; you ca
             $result = mysqli_query($conn, $sql_query);
             $userrow = mysqli_fetch_assoc($result);
 
-            if (mysqli_num_rows($result) >= 1) {
+            if (mysqli_num_rows($result) > 0) {
                 $out_reg = "The username " . $username . " has already been taken.  Please choose a different username.";
             }
 
@@ -83,12 +84,12 @@ You do not need to populate the database with songs through an HTML form; you ca
             $sql_query = "SELECT * FROM users WHERE username = ('$username')";
             $result = mysqli_query($conn, $sql_query);
             #if usernname in db
-            if (mysqli_num_rows($result) >= 1) {
+            if (mysqli_num_rows($result) > 0) {
                 #query ratings table
                 $sql_query = "SELECT * FROM ratings WHERE username = ('$username')";
                 $result = mysqli_query($conn, $sql_query);
                 #check if there are any ratings for that username
-                if (mysqli_num_rows($result) >= 1) {
+                if (mysqli_num_rows($result) > 0) {
                     #print each song and its rating
                     while($ratings = mysqli_fetch_assoc($result)) {
                         $out_song = $out_song . $ratings["song"] . " has been rated " . $ratings["rating"] . "<br>";
@@ -98,26 +99,23 @@ You do not need to populate the database with songs through an HTML form; you ca
                 else {
                     $out_song = "The user " . $username . " has no ratings yet.";
                 }
-
-
             }
-        }
             #if username not in db
             else {
                 $out_song = "Username " . $username . " has not yet been registered.";
             }
+        }
+        #if no username entered
+        else {
+            $out_song = "First you'll need to enter a username.";
+        }
     }
-    #if no username entered
-    else {
-      $out_song = "First you'll need to enter a username.";
-    }
-
     $conn->close();
   ?>
 
 <!--HTML -->
   <div class="forms">
-  
+
   <h1> Registration </h1>
   <form method="GET" action="">
   Username: <input type="text" name="Username" placeholder="New Username" /><br>
