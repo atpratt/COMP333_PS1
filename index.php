@@ -51,11 +51,11 @@ You do not need to populate the database with songs through an HTML form; you ca
             $sql_query = "SELECT * FROM users WHERE Username = ('$username')";
             $result = mysqli_query($conn, $sql_query);
             $userrow = mysqli_fetch_assoc($result);
-
+            #if username already in db
             if (mysqli_num_rows($result) > 0) {
                 $out_reg = "The username " . $username . " has already been taken.  Please choose a different username.";
             }
-
+            #if new username
             else {
                 $sql_query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
                 $result = mysqli_query($conn, $sql_query);
@@ -67,7 +67,6 @@ You do not need to populate the database with songs through an HTML form; you ca
                 }
             }
         }
-
         else {
             $out_reg = "You'll need to enter a username and password!";
         }
@@ -87,12 +86,13 @@ You do not need to populate the database with songs through an HTML form; you ca
             if (mysqli_num_rows($result) > 0) {
                 #query ratings table
                 $sql_query = "SELECT * FROM ratings WHERE username = ('$username')";
+                #$sql_query_artist = "SELECT * FROM a WHERE username = ('$username')";
                 $result = mysqli_query($conn, $sql_query);
                 #check if there are any ratings for that username
                 if (mysqli_num_rows($result) > 0) {
                     #print each song and its rating
                     while($ratings = mysqli_fetch_assoc($result)) {
-                        $out_song = $out_song . $ratings["song"] . " has been rated " . $ratings["rating"] . "<br>";
+                        $out_song = $out_song . $username . " has rated '" . $ratings["song"] . "' a " . $ratings["rating"] . "." . "<br>";
                     }
                 }
                 #if no ratings for that username
@@ -121,22 +121,26 @@ You do not need to populate the database with songs through an HTML form; you ca
   Username: <input type="text" name="Username" placeholder="New Username" /><br>
   Password: <input type="text" name="Password" placeholder="New Password" /><br>
   <input type="submit" name="submit" value="Submit"/>
-  <p><?php
+  <p>
+  <?php
   if(!empty($out_reg)){
       echo $out_reg;
   }
-  ?><p>
+  ?>
+  <p>
   </form>
 
   <h1> Song Retrieval </h1>
   <form method="GET" action="">
   Username: <input type="text" name="Rater" placeholder="Rater's Username" /><br>
   <input type="submit" name="Song_Retrieval" value="Retrieve"/>
-  <p><?php
+  <p>
+  <?php
   if(!empty($out_song)){
       echo $out_song;
   }
-  ?><p>
+  ?>
+  <p>
   </form>
   </div>
 
