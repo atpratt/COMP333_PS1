@@ -4,6 +4,11 @@ Comp_333
 Silvia:
 
 Andrew:
+3/1:
+-Created Git Repo and filled in the files for 1 that Wilson Started
+
+3/4:
+-Started Question 2 (DJANGO)
 
 Wilson:
 3/1:
