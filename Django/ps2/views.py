@@ -26,7 +26,7 @@ def Registration(request):
                 registration_form.output = "The username '" + form.cleaned_data.get("username") + "' has already been taken.  Please choose a different username."
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
         else:
-            context = {'reg_form': registration_form, 'ret_form': retrieval_form}
+            context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 
     return render(request, 'music-db/index.html', context)
 
