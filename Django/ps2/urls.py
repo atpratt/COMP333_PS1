@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
 
 
 #set up the different paths availible for the users
 urlpatterns = [
     path("", include("music-db.urls")),
     path('admin/', admin.site.urls),
+    path("registration/", views.Registration, name = "Registration"),
+    path("ratings/", views.Ratings_Retrieval, name = "Ratings_Retrieval"),
+    path("attributes/", views.Attributes_Retrieval, name = "Attributes_Retrieval"),
 ]
