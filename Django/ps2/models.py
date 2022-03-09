@@ -9,7 +9,7 @@ class SongAttributes(models.Model):
     artist = models.CharField(max_length = 255)
     album = models.CharField(max_length = 255)
     genre = models.CharField(max_length = 255)
-    year = models.IntegerField(default = 2000)
+    year = models.IntegerField(max_digits=4, default = 2000)
     record_company = models.CharField(max_length = 255)
 
        def __str__(self):
