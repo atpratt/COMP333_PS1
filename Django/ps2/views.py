@@ -5,15 +5,21 @@ from .models import Users, Artists, Ratings, SongAttributes
 
 #Query the users table
 def Registration(request):
-    registration_form = Registration_form
-    retrieval_form = Retrieval_form
-    if request.method == 'POST':
-        form = Registration_form(request.POST)
-        if form.is_valid():
-            try:
-                user = Users.object.get(username = form.cleaned_data.get("username"))
-            except Users.DoesNotExist:
-                user = None
+    form = Registration_form(request.POST)
+    output = " "
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        try:
+            Users.object.get(username = username)
+            output = "That username has already been taken.  Please choose a different username."
+        except:
+            if username == "" or password == "":
+                output = "You'll need to enter both a username and password!"
+            else:
+                Users.objects.create(username=username, password=password)
+                output = "Successfully registered user."
+
 
             if (form.cleaned_data.get("username") != "" and user == None):
                 new_user = Users(username = form.cleaned_data.get("username"), password = form.cleaned_data.get("password"))
@@ -33,13 +39,13 @@ def Registration(request):
 #Query the ratings table
 def Ratings_Retrieval(request):
     registration_form = Registration_form
-    retrieval_form = Retrieval_form
+    retrieval_form = Retrieve_rating_form
     if request.method == 'POST':
-        form = Retrieval_form(request.POST)
+        form = Retrieve_rating_form(request.POST)
         if form.is_valid():
             try: 
                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-                ratings = Ratings.objects.filter(input=form.cleaned_data.get("input"))
+                ratings = Ratings.objects.filter(username=form.cleaned_data.get("username"))
                 #retrieval_form.output = ""
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'ratings': ratings}
             except Ratings.DoesNotExist:
