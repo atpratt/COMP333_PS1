@@ -11,13 +11,13 @@ class Artists(models.Model):
 class Ratings(models.Model):
     username = models.ForeignKey(Users, max_length = 255, primary_key = True)
     song = models.ForeignKey(Artists, max_length = 255)
-    rating = models.IntegerField(default = 1)
+    rating = models.IntegerField()
 
 class SongAttributes(models.Model):
     song = models.ForeignKey(Artists, max_length = 255, primary_key = True)
-    #artist = models.ForeignKey(Artists, max_length = 255)
+    artist = models.ForeignKey(Artists, max_length = 255)
     album = models.CharField(max_length = 255)
-    genre = models.CharField(max_length=255)
+    genre = models.CharField(max_length = 255)
     year = models.IntegerField(default = 2000)
     record_company = models.CharField(max_length = 255)
 
