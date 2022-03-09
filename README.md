@@ -28,6 +28,7 @@ Wilson:
 
 3/8:
 -Added new table for 2b. in models.py
--Added settings file
--Added forms file
--started working on views.py
+-Added settings.py file
+-Added forms.py file
+-Added views.py file
+-Finished functions in views.py, but there are bugs in variables/references
