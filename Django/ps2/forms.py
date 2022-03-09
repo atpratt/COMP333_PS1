@@ -5,5 +5,6 @@ class Registration_form(forms.Form):
     password = forms.CharField(label="New Password: ", max_length=255)
     output = ""
 
-class Song_Retrieval_form(forms.Form):
-    username = forms.CharField(label="Rater's Username: ", max_length=255)
+#Not sure what to use for label. Does this show in the submission box for the form?
+class Retrieval_form(forms.Form):
+    username = forms.CharField(label="Retrieve: ", max_length=255)
