@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import Registration_form, Retrieval_form
+from .forms import Registration_form, Retrieve_rating_form, Retrieve_attributes_form
 from .models import Users, Artists, Ratings, SongAttributes
 # Create your views here.
 
