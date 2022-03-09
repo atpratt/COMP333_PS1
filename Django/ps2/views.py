@@ -38,7 +38,8 @@ def Ratings_Retrieval(request):
         form = Retrieval_form(request.POST)
         if form.is_valid():
             try: 
-                ratings = Ratings.objects.filter(username=form.cleaned_data.get("username"))
+                #This may be the bug. Do we use "input" from forms.py or what is in models.py?
+                ratings = Ratings.objects.filter(input=form.cleaned_data.get("input"))
                 #retrieval_form.output = ""
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'ratings': ratings}
             except Ratings.DoesNotExist:
@@ -59,7 +60,8 @@ def Attribute_Retrieval(request):
         if form.is_valid():
             try: 
                 #retrieval_form.output = ""
-                attributes = SongAttributes.objects.filter(name=form.cleaned_data.get("username"))
+                #This may be the bug. Do we use "input" from forms.py or what is in models.py?
+                attributes = SongAttributes.objects.filter(input=form.cleaned_data.get("input"))
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'attributes': attributes}
             except SongAttributes.DoesNotExist:
                 #retrieval_form.output = ""

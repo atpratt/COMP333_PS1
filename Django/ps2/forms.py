@@ -7,4 +7,5 @@ class Registration_form(forms.Form):
 
 #Not sure what to use for label. Does this show in the submission box for the form?
 class Retrieval_form(forms.Form):
-    username = forms.CharField(label="Retrieve: ", max_length=255)
+    input = forms.CharField(label="Retrieve: ", max_length=255)
+    output = ""
