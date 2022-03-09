@@ -25,3 +25,9 @@ Wilson:
 -index.php works perfectly
 -may play around with the stylesheet a bit
 -Question 1 is now completed
+
+3/8:
+-Added new table for 2b. in models.py
+-Added settings file
+-Added forms file
+-started working on views.py
