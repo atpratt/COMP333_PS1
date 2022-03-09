@@ -70,3 +70,9 @@ def Ratings_Retrieval(request):
         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 
     return render(request, 'music-db/index.html', context)
+
+def index(request):
+    registration_form = Registration_Form
+    retrieval_form = Retrieval_Form
+    context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+    return render(request, "music-db/index.html", context)
