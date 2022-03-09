@@ -3,6 +3,7 @@ from .forms import Registration_form, Retrieval_form
 from .models import Users, Artists, Ratings, SongAttributes
 # Create your views here.
 
+#Query the users table
 def Registration(request):
     registration_form = Registration_form
     retrieval_form = Retrieval_form
@@ -29,7 +30,7 @@ def Registration(request):
 
     return render(request, 'music-db/index.html', context)
 
-
+#Query the ratings table
 def Ratings_Retrieval(request):
     registration_form = Registration_form
     retrieval_form = Retrieval_form
@@ -49,7 +50,8 @@ def Ratings_Retrieval(request):
     
     return render(request, 'music-db/index.html', context)
 
-def Ratings_Retrieval(request):
+#Query the song attribute table
+def Attribute_Retrieval(request):
     registration_form = Registration_form
     retrieval_form = Retrieval_form
     if request.method == 'POST':
