@@ -20,24 +20,31 @@ def Registration(request):
                 Users.objects.create(username=username, password=password)
                 output = "Successfully registered user."
 
+    return output
 
-            if (form.cleaned_data.get("username") != "" and user == None):
-                new_user = Users(username = form.cleaned_data.get("username"), password = form.cleaned_data.get("password"))
-                new_user.save()
-                registration_form.output = "Successfully registered " + form.cleaned_data.get("username") + "!"
-            elif (form.cleaned_data.get("username") == "" or form.cleaned_data.get("password") == ""):
-                registration_form.output = "You'll need to enter both a username and password!"
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-            else:
-                registration_form.output = "The username '" + form.cleaned_data.get("username") + "' has already been taken.  Please choose a different username."
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-        else:
-            context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 
-    return render(request, 'music-db/index.html', context)
+    #         if (form.cleaned_data.get("username") != "" and user == None):
+    #             new_user = Users(username = form.cleaned_data.get("username"), password = form.cleaned_data.get("password"))
+    #             new_user.save()
+    #             registration_form.output = "Successfully registered " + form.cleaned_data.get("username") + "!"
+    #         elif (form.cleaned_data.get("username") == "" or form.cleaned_data.get("password") == ""):
+    #             registration_form.output = "You'll need to enter both a username and password!"
+    #             context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+    #         else:
+    #             registration_form.output = "The username '" + form.cleaned_data.get("username") + "' has already been taken.  Please choose a different username."
+    #             context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+    #     else:
+    #         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+
+    # return render(request, 'music-db/index.html', context)
 
 #Query the ratings table
 def Ratings_Retrieval(request):
+    form = Retrieve_rating_form(request.POST)
+    
+    
+    
+    
     registration_form = Registration_form
     retrieval_form = Retrieve_rating_form
     if request.method == 'POST':
