@@ -65,11 +65,10 @@ def Ratings_Retrieval(request):
     return render(request, 'music-db/index.html', context)
 
 #Query the song attribute table
-def Attribute_Retrieval(request):
-    registration_form = Registration_form
-    retrieval_form = Retrieval_form
-    if request.method == 'POST':
-        form = Retrieval_form(request.POST)
+#??????????????????????????????????
+def Attributes_Retrieval(request):
+        form = Retrieve_attributes_form(request.POST)
+        output = ""
         if form.is_valid():
             try: 
                 #retrieval_form.output = ""
