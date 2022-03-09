@@ -87,6 +87,10 @@ def Attributes_Retrieval(request):
 
     return render(request, 'music-db/index.html', context)
 
+def jsonview(request):
+    return JsonResponse({"Your JSON Response": "Success!"})
+
+
 def index(request):
     registration_form = Registration_Form
     retrieval_form = Retrieval_Form
