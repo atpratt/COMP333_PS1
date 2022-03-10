@@ -20,7 +20,7 @@ from . import views
 
 #set up the different paths availible for the users
 urlpatterns = [
-    path("", include("music-db.urls")),
+    path("", views.index, name = "index"),
     path('admin/', admin.site.urls),
     path("registration/", views.Registration, name = "Registration"),
     path("ratings/", views.Ratings_Retrieval, name = "Ratings_Retrieval"),
