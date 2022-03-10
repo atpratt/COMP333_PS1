@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
+<title>music-db</title>
+
+</head>
+
+<body>
+	<div class="forms">
+
+	<h1> Music Database </h1>
+    <h1> Registration </h1>
+	<form method="POST" action="">
+        {% csrf_token %}
+        {{ registration_form | linebreaks }}
+        {{registration_form.output}}
+        <input type="submit" name="Registration" value="Submit"/>
+    </form>
+
+    <h2> Retrieve Ratings </h2>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ retrieval_form | linebreaks }}
+        <input type="submit" name="Ratings" value="Submit"/>
+	</form>
+    {% for i in ratings %}
+    <p> This user has given {{ i.song.song }} a rating of {{ i.rating}} </p>
+    {{registration_form.output}}
+    {% endfor %}
+
+    <h2> Retrieve Song Attributes </h2>
+    <form method="POST" action="/artistret/">
+        {% csrf_token %}
+        {{ retrieval_form | linebreaks }}
+        <input type="submit" name="Attributes" value="Submit"/>
+	</form>
+    {% for i in attributes %}
+    <p> Artist: {{ i.artist }} </p>
+    <p> Album: {{ i.album }} </p>
+    <p> Genre: {{ i.genre }} </p>
+    <p> Album: {{ i.album }} </p>
+    <p> Released: {{ i.year}} </p>
+    <p> Record Company: {{ i.record_company }} </p>
+    {{registration_form.output}}
+    {% endfor %}
+
+    </div>
+
+</body>
+</html>
