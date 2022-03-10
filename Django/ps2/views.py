@@ -36,7 +36,7 @@ def Registration(request):
     #     else:
     #         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 
-    #return render(request, 'ps2/index.html', context)
+    #return render(request, 'ps2/detail.html', context)
 
 #Query the ratings table
 def Ratings_Retrieval(request):
@@ -57,7 +57,7 @@ def Ratings_Retrieval(request):
             #retrieval_form.output = ""
             context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
     
-    return render(request, 'ps2/index.html', context)
+    return render(request, 'ps2/detail.html', context)
 
 #Query the song attribute table
 #??????????????????????????????????
@@ -82,7 +82,7 @@ def Attributes_Retrieval(request):
         #retrieval_form.output = ""
         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 
-    return render(request, 'ps2/index.html', context)
+    return render(request, 'ps2/detail.html', context)
 
 
 
@@ -90,4 +90,4 @@ def index(request):
     registration_form = Registration_form
     retrieval_form = Retrieval_form
     context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-    return render(request, "ps2/index.html", context)
+    return render(request, "ps2/detail.html", context)
