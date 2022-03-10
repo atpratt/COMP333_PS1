@@ -35,3 +35,9 @@ Wilson:
 -Added forms.py file
 -Added views.py file
 -Finished functions in views.py, but there are bugs in variables/references
+
+3/9:
+-Finished forms.py
+-Finished index.html
+-Finished views.py
+-Finished models.py
