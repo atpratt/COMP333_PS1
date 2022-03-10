@@ -8,12 +8,14 @@ class Attributes(models.Model):
     name = models.CharField(max_length = 200, primary_key = True)
     album = models.CharField(max_length = 200)
     genre = models.CharField(max_length = 200)
+    year = models.IntegerField(default=2000)
     record_company = models.CharField(max_length = 200)
 
        def __str__(self):
         return (self.name
                 + "" + self.album
                 + "" + self.genre
+                + "" + self.year
                 + "" + self.record_company)
 
 class Artists(models.Model):

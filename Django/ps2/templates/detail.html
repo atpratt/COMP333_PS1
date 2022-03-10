@@ -15,35 +15,41 @@
 	<h1> Music Database </h1>
     <h2> Registration </h2>
 	<form method="POST" action="">
+
         {% csrf_token %}
         {{ registration_form | linebreaks }}
         {{registration_form.output}}
+
         <input type="submit" name="Registration" value="Submit"/>
     </form>
 
     <h2> Retrieve Ratings </h2>
     <form method="POST" action="">
+
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
         <input type="submit" name="Ratings" value="Submit"/>
+
 	</form>
+
     {% for song in ratings %}
-    <p> This user has given {{ song.song.song }} a rating of {{ song.rating}} </p>
+    <p> This user has given {{ song.song.song }} by {{ song.artist.name }} a rating of {{ song.rating  }} </p>
     {{registration_form.output}}
     {% endfor %}
 
     <h2> Retrieve Song Attributes </h2>
-    <form method="POST" action="/artistret/">
+    <form method="POST" action="">
+
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
         <input type="submit" name="Attributes" value="Submit"/>
 	</form>
+
     {% for song in attributes %}
-    <p> Artist: {{ song.artist }} </p>
+    <p> Artist: {{ song.name }} </p>
     <p> Album: {{ song.album }} </p>
     <p> Genre: {{ song.genre }} </p>
-    <p> Album: {{ song.album }} </p>
-    <p> Released: {{ song.year}} </p>
+    <p> Year of Recording: {{ song.year}} </p>
     <p> Record Company: {{ song.record_company }} </p>
     {{registration_form.output}}
     {% endfor %}
