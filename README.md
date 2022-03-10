@@ -12,7 +12,7 @@ Andrew:
 
 Wilson:
 1.) Entirety of problem 1.
-2.) Entirety of models.py, forms.py, urls.py, settings.py.  Implemented all functions in views.py, but was unable to debug.
+2.) Entirety of models.py, forms.py, urls.py, settings.py, views.py, index.html.
 
 3/1:
 -Finished 1a markdown file to populate our music database with tables and implemented foreign keys that cascade on delete
