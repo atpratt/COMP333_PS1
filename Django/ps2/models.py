@@ -1,16 +1,16 @@
 from django.db import models
 
 class Users(models.Model):
-    username = models.CharField(max_length = 255, primary_key = True)
-    password = models.CharField(max_length = 255)
+    username = models.CharField(max_length = 200, primary_key = True)
+    password = models.CharField(max_length = 200)
 
 class SongAttributes(models.Model):
-    song = models.CharField(max_length = 255, primary_key = True)
-    artist = models.CharField(max_length = 255)
-    album = models.CharField(max_length = 255)
-    genre = models.CharField(max_length = 255)
+    song = models.CharField(max_length = 200, primary_key = True)
+    artist = models.CharField(max_length = 200)
+    album = models.CharField(max_length = 200)
+    genre = models.CharField(max_length = 200)
     year = models.IntegerField(max_digits=4, default = 2000)
-    record_company = models.CharField(max_length = 255)
+    record_company = models.CharField(max_length = 200)
 
        def __str__(self):
         return (self.song
@@ -21,12 +21,12 @@ class SongAttributes(models.Model):
                 + "" + self.record_company)
 
 class Artists(models.Model):
-    song = models.ForeignKey(SongAttributes, max_length = 255, primary_key = True, on_delete=models.CASCADE)
-    artist = models.ForeignKey(SongAttributes, max_length = 255)
+    song = models.ForeignKey(SongAttributes, max_length = 200, primary_key = True, on_delete=models.CASCADE)
+    artist = models.ForeignKey(SongAttributes, max_length = 200)
 
 class Ratings(models.Model):
-    username = models.ForeignKey(Users, max_length = 255, primary_key = True, on_delete=models.CASCADE)
-    song = models.ForeignKey(Artists, max_length = 255, on_delete=models.CASCADE)
+    username = models.ForeignKey(Users, max_length = 200, primary_key = True, on_delete=models.CASCADE)
+    song = models.ForeignKey(Artists, max_length = 200, on_delete=models.CASCADE)
     rating = models.IntegerField()
 
 
