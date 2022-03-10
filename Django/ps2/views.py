@@ -13,7 +13,7 @@ def Registration(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         try:
-            Users.object.get(username = username)
+            Users.objects.get(username = username)
             output = "That username has already been taken.  Please choose a different username."
         except:
             if username == "" or password == "":
