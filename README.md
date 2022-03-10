@@ -12,7 +12,7 @@ Andrew:
 
 Wilson:
 1.) Entirety of problem 1.
-2.) Entirety of models.py, forms.py, urls.py, settings.py, views.py, index.html.
+2.) Entirety of models.py, forms.py, urls.py, settings.py, views.py, detail.html, css/site.css
 
 3/1:
 -Finished 1a markdown file to populate our music database with tables and implemented foreign keys that cascade on delete
@@ -38,6 +38,7 @@ Wilson:
 
 3/9:
 -Finished forms.py
--Finished index.html
+-Finished detail.html
 -Finished views.py
 -Finished models.py
+-Finished
