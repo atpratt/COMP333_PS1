@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
 <title>music-db</title>
+<link rel="stylesheet" href='ps2/stylesheet_django.css'>
 
 </head>
 
@@ -11,7 +12,7 @@
 	<div class="forms">
 
 	<h1> Music Database </h1>
-    <h1> Registration </h1>
+    <h2> Registration </h2>
 	<form method="POST" action="">
         {% csrf_token %}
         {{ registration_form | linebreaks }}
