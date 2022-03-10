@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import Registration_form, Retrieval_form
-from .models import Users, Artists, Ratings, SongAttributes
+from .models import Users, Artists, Ratings, Attributes
 # Create your views here.
 
 #Query the users table
@@ -70,9 +70,9 @@ def Attributes_Retrieval(request):
             try: 
                 #retrieval_form.output = ""
                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-                attributes = SongAttributes.objects.filter(song=form.cleaned_data.get("input"))
+                attributes = Attributes.objects.filter(name=form.cleaned_data.get("input"))
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'attributes': attributes}
-            except SongAttributes.DoesNotExist:
+            except Attributes.DoesNotExist:
                 #retrieval_form.output = ""
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
         else:

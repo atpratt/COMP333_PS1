@@ -4,35 +4,27 @@ class Users(models.Model):
     username = models.CharField(max_length = 200, primary_key = True)
     password = models.CharField(max_length = 200)
 
-class SongAttributes(models.Model):
-    song = models.CharField(max_length = 200, primary_key = True)
-    artist = models.CharField(max_length = 200)
+class Attributes(models.Model):
+    name = models.CharField(max_length = 200, primary_key = True)
     album = models.CharField(max_length = 200)
     genre = models.CharField(max_length = 200)
-    year = models.IntegerField(max_digits=4, default = 2000)
     record_company = models.CharField(max_length = 200)
 
        def __str__(self):
-        return (self.song
-                + "" + self.artist 
+        return (self.name
                 + "" + self.album
                 + "" + self.genre
-                + "" + self.year
                 + "" + self.record_company)
 
 class Artists(models.Model):
-    song = models.ForeignKey(SongAttributes, max_length = 200, primary_key = True, on_delete=models.CASCADE)
-    artist = models.ForeignKey(SongAttributes, max_length = 200)
+    song = models.CharField(max_length = 200, primary_key = True)
+    artist = models.ForeignKey(Attributes, max_length = 200)
 
 class Ratings(models.Model):
-    username = models.ForeignKey(Users, max_length = 200, primary_key = True, on_delete=models.CASCADE)
+    username = models.ForeignKey(Users, max_length = 200, on_delete=models.CASCADE)
     song = models.ForeignKey(Artists, max_length = 200, on_delete=models.CASCADE)
     rating = models.IntegerField()
 
-
-
- 
-    
 
 #unique = true marks them as the primary key
 #cascade deletes them from other tables too when deleted from their own
