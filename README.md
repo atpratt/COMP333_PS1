@@ -1,44 +1,21 @@
-# COMP333_PS1
-Comp_333
+# COMP333_HW2
+Homework 2: Backend (PHP, SQL, Django)
+Silvia Mayo, Andrew Pratt, Wilson McCloy
 
+Problem 1.)
+Please see "SQL_readme.md" for SQL queries needed to populate database.
+
+Problem 2.)
+Django implementation is not finished. Please see what has been done by running "python manage.py runserver."
+
+Work Distribution:
 Silvia:
+Contributed absolutely nothing.
 
 Andrew:
-3/1:
--Created Git Repo and filled in the files for 1 that Wilson Started
-
-3/4:
--Started Question 2 (DJANGO)
+-Created Git Repo.
+-created the Django app by running "startproject.py" and pushed it to github.
 
 Wilson:
-1.) Entirety of problem 1.
-2.) Entirety of models.py, forms.py, urls.py, settings.py, views.py, detail.html, css/site.css
-
-3/1:
--Finished 1a markdown file to populate our music database with tables and implemented foreign keys that cascade on delete
--it all seems to work correctly
--Database in phpMyAdmin must be named "music-db"
-
-3/2:
--Finished index.php file
--Have run it; there are some bugs to work out with TA/office hours
--Implemented "stylesheet.css" that index.php links to
-
-3/4:
--index.php works perfectly
--may play around with the stylesheet a bit
--Question 1 is now completed
-
-3/8:
--Added new table for 2b. in models.py
--Added settings.py file
--Added forms.py file
--Added views.py file
--Finished functions in views.py, but there are bugs in variables/references
-
-3/9:
--Finished forms.py
--Finished detail.html
--Finished views.py
--Finished models.py
--Finished
+-Entirety of LAMP implementation.
+-All files and code written in unsuccessful Django implementation.

@@ -16,7 +16,7 @@
     <p>We'll get you what you need...</p>
     <h2> Registration </h2>
 	<form method="POST" action="/registration/">
-
+        <p>Firt timer? Let's get you started.</p>
         {% csrf_token %}
         {{ registration_form | linebreaks }}
         {{registration_form.output}}
@@ -26,10 +26,11 @@
 
     <h2> Retrieve Ratings </h2>
     <form method="POST" action="/ratings/">
-
+        <p>Enter a username see all the songs they've rated.</p>
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
-        <input type="submit" name="Ratings" value="Enter username to see what songs they've rated."/>
+        
+        <input type="submit" name="Ratings" value="Search username"/>
 
 	</form>
 
@@ -40,10 +41,11 @@
 
     <h2> Retrieve Artist Attributes </h2>
     <form method="POST" action="/attributes/">
-
+        <p>Enter a song title to learn more about the artist.</p>
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
-        <input type="submit" name="Attributes" value="Enter song title to learn about the artist."/>
+
+        <input type="submit" name="Attributes" value="Search song"/>
 	</form>
 
     {% for song in attributes %}
