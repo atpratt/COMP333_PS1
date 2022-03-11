@@ -17,6 +17,7 @@ Contributed absolutely nothing.
 Andrew:
 -Created Git Repo.
 -Created the Django app by running "startproject.py" and pushed it to github.
+-Attempt at Debugging the Django Code
 
 Wilson:
 -Entirety of LAMP implementation.
