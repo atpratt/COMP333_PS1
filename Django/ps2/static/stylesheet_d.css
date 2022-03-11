@@ -12,20 +12,20 @@
 	margin: auto;
 }
 h1 {
-    font-size: 20px;
+    font-size: 30px;
     flex-wrap: wrap;
     color: black;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 20px;
     flex-wrap: wrap;
     color: black;
 }
 
 input{
 	background-color: lightslategray;
-	font-size: 30px;
+	font-size: 10px;
 	border: 10px white;
 	margin: auto;
 	text-align: center;
