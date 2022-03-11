@@ -4,7 +4,7 @@
 .forms{
 	border: 10px solid lightslategray;
 	background-color: white;
-	padding: 40px;
+	padding: 20px;
 	text-align: center;
 	color: black;
 	font-family: 'Roboto Mono', monospace;
@@ -12,7 +12,7 @@
 	margin: auto;
 }
 h1 {
-    font-size: 40px;
+    font-size: 20px;
     flex-wrap: wrap;
     color: black;
 }
@@ -28,8 +28,8 @@ input{
 	border: 10px white;
 	margin: auto;
 	text-align: center;
-  display: block;
-  color: black;
+  	display: block;
+  	color: black;
 }
 body{
 	background-color: lightslategray;

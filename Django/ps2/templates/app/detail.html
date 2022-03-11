@@ -47,11 +47,8 @@
 	</form>
 
     {% for song in attributes %}
-    <p> Artist: {{ song.name }} </p>
-    <p> Album: {{ song.album }} </p>
-    <p> Genre: {{ song.genre }} </p>
-    <p> Year of Recording: {{ song.year}} </p>
-    <p> Record Company: {{ song.record_company }} </p>
+    <p> This is a {{ song.genre }} song performed by {{ song.name }} off of the album {{ song.album }}. </p>
+    <p> It was released in {{ song.year }} through the {{ song.record_company }} record label.</p>
     {{registration_form.output}}
     {% endfor %}
 
