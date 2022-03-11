@@ -1,5 +1,6 @@
 # COMP333_HW2
 Homework 2: Backend (PHP, SQL, Django)
+
 Silvia Mayo, Andrew Pratt, Wilson McCloy
 
 Problem 1.)
@@ -9,6 +10,7 @@ Problem 2.)
 Django implementation is not finished. Please see what has been done by running "python manage.py runserver."
 
 Work Distribution:
+
 Silvia:
 Contributed absolutely nothing.
 
