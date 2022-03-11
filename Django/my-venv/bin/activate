@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/andrewpratt/Desktop/Software/PS2/COMP333_PS2/Question2/my-venv"
+VIRTUAL_ENV="/Users/andrewpratt/Desktop/Software/COMP333_PS2/Django/my-venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
