@@ -5,30 +5,31 @@
 <head>
 <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
 <title>music-db</title>
-<link rel="stylesheet" href={% static 'stylesheet_d.css" %}>
+<link rel="stylesheet" href={% static 'stylesheet_d.css' %}>
 
 </head>
 
 <body>
 	<div class="forms">
 
-	<h1> Music Database </h1>
+	<h1> Music Database App </h1>
+    <p>We'll get you what you need...</p>
     <h2> Registration </h2>
-	<form method="POST" action="">
+	<form method="POST" action="/registration/">
 
         {% csrf_token %}
         {{ registration_form | linebreaks }}
         {{registration_form.output}}
 
-        <input type="submit" name="Registration" value="Submit"/>
+        <input type="submit" name="Registration" value="Finalize new user registration."/>
     </form>
 
     <h2> Retrieve Ratings </h2>
-    <form method="POST" action="">
+    <form method="POST" action="/ratings/">
 
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
-        <input type="submit" name="Ratings" value="Submit"/>
+        <input type="submit" name="Ratings" value="Enter username to see what songs they've rated."/>
 
 	</form>
 
@@ -37,12 +38,12 @@
     {{registration_form.output}}
     {% endfor %}
 
-    <h2> Retrieve Song Attributes </h2>
-    <form method="POST" action="">
+    <h2> Retrieve Artist Attributes </h2>
+    <form method="POST" action="/attributes/">
 
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
-        <input type="submit" name="Attributes" value="Submit"/>
+        <input type="submit" name="Attributes" value="Enter song title to learn about the artist."/>
 	</form>
 
     {% for song in attributes %}

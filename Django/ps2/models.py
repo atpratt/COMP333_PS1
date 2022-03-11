@@ -11,7 +11,7 @@ class Attributes(models.Model):
     year = models.IntegerField(default=2000)
     record_company = models.CharField(max_length = 200)
 
-       def __str__(self):
+    def __str__(self):
         return (self.name
                 + "" + self.album
                 + "" + self.genre
@@ -20,7 +20,7 @@ class Attributes(models.Model):
 
 class Artists(models.Model):
     song = models.CharField(max_length = 200, primary_key = True)
-    artist = models.ForeignKey(Attributes, max_length = 200)
+    artist = models.ForeignKey(Attributes, max_length = 200, on_delete=models.CASCADE)
 
 class Ratings(models.Model):
     username = models.ForeignKey(Users, max_length = 200, on_delete=models.CASCADE)
