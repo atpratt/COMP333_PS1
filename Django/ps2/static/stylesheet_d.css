@@ -26,7 +26,8 @@ h2 {
 
 input{
 	background-color: lightslategray;
-	border: 10px white;
+	border: 10px;
+	border-color: black;
 	margin: auto;
 	text-align: center;
   display: block;
