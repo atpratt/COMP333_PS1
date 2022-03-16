@@ -103,6 +103,30 @@ def Ratings_Retrieval(request):
     
     return render(request, 'app/detail.html', context)
 
+
+
+# def Ratings_Retrieval(request):
+#     try:
+#         song_req=request.POST['song']
+#         rating_req=request.POST['rating']
+#         if rating_req == "": #no song raiting
+#             message = "No raiting for that song"
+#             context = {'message' : message, 'rating_req' : ''}
+#             return render(request, 'app/detail.html', context)
+        
+#         else:
+#             message = song_req
+#             context = {'message' : message, 'rating' : rating_req}
+#             return render(request, 'app/detail.html', context)
+
+#     except(KeyError):
+#         message = "Not Availible"
+#         context = {'message' : message, 'rating_req' : ''}
+#         return render(request, 'app/detail.html', context)
+
+
+
+
 #Query the song attribute table
 #??????????????????????????????????
 def Attributes_Retrieval(request):
