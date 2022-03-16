@@ -8,7 +8,7 @@ class User(models.Model):
     password = models.CharField(max_length = 200, default='SOME STRING')
 
 class Attribute(models.Model):
-    name = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
+    artist = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
     album = models.CharField(max_length = 200, default='SOME STRING')
     genre = models.CharField(max_length = 200, default='SOME STRING')
     year = models.IntegerField(default=2000)

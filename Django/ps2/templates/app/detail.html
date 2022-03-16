@@ -41,16 +41,16 @@
 
     <h2> Retrieve Artist Attributes </h2>
     <form method="POST" action="/attributes/">
-        <p>Enter a song title to learn more about the artist.</p>
+        <p>Enter an artist's name to learn more about them.</p>
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
 
         <input type="submit" name="Attributes" value="Search song"/>
 	</form>
 
-    {% for song in attributes %}
-    <p> This is a {{ song.genre }} song performed by {{ song.name }} off of the album {{ song.album }}. </p>
-    <p> It was released in {{ song.year }} through the {{ song.record_company }} record label.</p>
+    {% for artist in attributes %}
+    <p> {{ astist.artist }}  is a {{ astist.genre }} artist whose most recent album was {{ artist.album }}. </p>
+    <p> It was released in {{ artist.year }} through the {{ astist.record_company }} record label.</p>
     {{registration_form.output}}
     {% endfor %}
 
