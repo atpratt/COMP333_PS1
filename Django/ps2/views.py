@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .forms import Registration_form, Retrieval_form
-from .models import Users, Artists, Ratings, Attributes
+from .models import User, Artist, Rating, Attribute
 # Create your views here.
 
 #Query the users table
@@ -12,13 +12,13 @@ def Registration(request):
             context = {'message' : message, 'user' : ''}
             return render(request, 'app/detail.html', context)
         pswd = request.POST['password']
-        if Users.objects.filter(username=usern).count()==1: 
+        if User.objects.filter(username=usern).count()==1: 
             #there already exists a user with this name
             message = "This Username has been taken"
             context = {'message' : message, 'user' : ''}
             return render(request, 'app/detail.html', context)
         
-        u = Users(username=usern, password=pswd)
+        u = User(username=usern, password=pswd)
         u.save()
 
         message = "New User Created"
@@ -38,8 +38,8 @@ def Registration(request):
 #         form = Registration_form(request.POST)
 #         if form.is_valid():
 #             try:
-#                 user = Users.objects.get(username = form.cleaned_data.get("username"))
-#             except Users.DoesNotExist:
+#                 user = User.objects.get(username = form.cleaned_data.get("username"))
+#             except User.DoesNotExist:
 #                 user = None
             
 #             #if username already in db
@@ -48,7 +48,7 @@ def Registration(request):
             
 #             #if username not in db
 #             if (form.cleaned_data.get("username") != "" and user == None):
-#                 new_user = Users.objects.get(username = form.cleaned_data.get("username"))
+#                 new_user = User.objects.get(username = form.cleaned_data.get("username"))
 #                 new_user.save()
 #                 registration_form.output = "Successfully registered " + form.cleaned_data.get("username") + "!"
             
@@ -68,13 +68,13 @@ def Registration(request):
     #     username = form.cleaned_data.get("username")
     #     password = form.cleaned_data.get("password")
     #     try:
-    #         Users.objects.get(username = username)
+    #         User.objects.get(username = username)
     #         output = "That username has already been taken.  Please choose a different username."
     #     except:
     #         if username == "" or password == "":
     #             output = "You'll need to enter both a username and password!"
     #         else:
-    #             Users.objects.create(username=username, password=password)
+    #             User.objects.create(username=username, password=password)
     #             output = "Successfully registered user."
 
     # return output
@@ -89,10 +89,10 @@ def Registration(request):
 #         if form.is_valid():
 #             try: 
 #                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-#                 ratings = Ratings.objects.filter(username=form.cleaned_data.get("input"))
+#                 ratings = Rating.objects.filter(username=form.cleaned_data.get("input"))
 #                 #retrieval_form.output = ""
 #                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'ratings': ratings}
-#             except Ratings.DoesNotExist:
+#             except Rating.DoesNotExist:
 #                 #retrieval_form.output = ""
 #                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 #         else:
@@ -112,7 +112,7 @@ def Ratings_Retrieval(request):
         #rating_req=request.POST['rating']
         usern=request.POST['username']
 
-        retrival = Ratings.objects.get(pk=usern)
+        retrival = Rating.objects.get(pk=usern)
         message = "Rating"
         context = {'message' : message, 'rating_req' : retrival}
         return render(request, 'app/detail.html', context)
@@ -136,9 +136,9 @@ def Attributes_Retrieval(request):
             try: 
                 #retrieval_form.output = ""
                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-                attributes = Attributes.objects.filter(name=form.cleaned_data.get("input"))
+                attributes = Attribute.objects.filter(name=form.cleaned_data.get("input"))
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'attributes': attributes}
-            except Attributes.DoesNotExist:
+            except Attribute.DoesNotExist:
                 #retrieval_form.output = ""
                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
         else:
