@@ -26,7 +26,7 @@
 
     <h2> Retrieve Ratings </h2>
     <form method="POST" action="/ratings/">
-        <p>Enter a username see all the songs they've rated.</p>
+        <p>Enter a username to see all the songs they've rated.</p>
         {% csrf_token %}
         {{ retrieval_form | linebreaks }}
         
