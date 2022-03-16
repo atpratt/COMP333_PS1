@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .forms import Registration_form, Retrieval_form
 from .models import Users, Artists, Ratings, Attributes
 # Create your views here.
@@ -24,6 +24,7 @@ def Registration(request):
         message = "New User Created"
         context = {'message' : message, 'user' : ''}
         return render(request, 'app/detail.html', context)
+
     except(KeyError):
         message = "Not Availible"
         context = {'message' : message, 'user' : ''}
@@ -80,49 +81,46 @@ def Registration(request):
   
 
 #Query the ratings table
-def Ratings_Retrieval(request):
-    registration_form = Registration_form
-    retrieval_form = Retrieval_form
-    if request.method == 'POST':
-        form = Retrieval_form(request.POST)
-        if form.is_valid():
-            try: 
-                #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-                ratings = Ratings.objects.filter(username=form.cleaned_data.get("input"))
-                #retrieval_form.output = ""
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'ratings': ratings}
-            except Ratings.DoesNotExist:
-                #retrieval_form.output = ""
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-        else:
-            #retrieval_form.output = ""
-            context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-    else:
-        #retrieval_form.output = ""
-        context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-    
-    return render(request, 'app/detail.html', context)
-
-
-
 # def Ratings_Retrieval(request):
-#     try:
-#         song_req=request.POST['song']
-#         rating_req=request.POST['rating']
-#         if rating_req == "": #no song raiting
-#             message = "No raiting for that song"
-#             context = {'message' : message, 'rating_req' : ''}
-#             return render(request, 'app/detail.html', context)
-        
+#     registration_form = Registration_form
+#     retrieval_form = Retrieval_form
+#     if request.method == 'POST':
+#         form = Retrieval_form(request.POST)
+#         if form.is_valid():
+#             try: 
+#                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
+#                 ratings = Ratings.objects.filter(username=form.cleaned_data.get("input"))
+#                 #retrieval_form.output = ""
+#                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'ratings': ratings}
+#             except Ratings.DoesNotExist:
+#                 #retrieval_form.output = ""
+#                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
 #         else:
-#             message = song_req
-#             context = {'message' : message, 'rating' : rating_req}
-#             return render(request, 'app/detail.html', context)
+#             #retrieval_form.output = ""
+#             context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+#     else:
+#         #retrieval_form.output = ""
+#         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+    
+#     return render(request, 'app/detail.html', context)
 
-#     except(KeyError):
-#         message = "Not Availible"
-#         context = {'message' : message, 'rating_req' : ''}
-#         return render(request, 'app/detail.html', context)
+
+
+def Ratings_Retrieval(request):
+    try:
+        #song_req=request.POST['song']
+        #rating_req=request.POST['rating']
+        usern=request.POST['username']
+
+        retrival = Ratings.objects.get(pk=usern)
+        message = "Rating"
+        context = {'message' : message, 'rating_req' : retrival}
+        return render(request, 'app/detail.html', context)
+
+    except(KeyError):
+        message = "Not Availible"
+        context = {'message' : message, 'rating_req' : ''}
+        return render(request, 'app/detail.html', context)
 
 
 
