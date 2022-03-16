@@ -23,11 +23,11 @@ class Attribute(models.Model):
 
 class Artist(models.Model):
     song = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
-    artist = models.ForeignKey(Attributes, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
+    artist = models.ForeignKey(Attribute, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
 
 class Rating(models.Model):
-    username = models.ForeignKey(Users, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
-    song = models.ForeignKey(Artists, max_length = 200, on_delete=models.CASCADE,default='SOME STRING')
+    username = models.ForeignKey(User, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
+    song = models.ForeignKey(Artist, max_length = 200, on_delete=models.CASCADE,default='SOME STRING')
     rating = models.IntegerField(default=2000)
 
 
