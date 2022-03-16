@@ -14,7 +14,7 @@ class UsersAdmin(admin.ModelAdmin):
 #based on slides we need to register all of the models
 @admin.register(Attribute)
 class AttributesAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("artist_name",)
 
 @admin.register(Artist)
 class ArtistsAdmin(admin.ModelAdmin):
