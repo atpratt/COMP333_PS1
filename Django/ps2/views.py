@@ -7,7 +7,7 @@ from .models import User, Artist, Rating, Attribute
 def Registration(request):
     try:
         usern=request.POST['username']
-        if usern == "": #no user
+        if usern == "": #no user inputed
             message = "No information"
             context = {'message' : message, 'user' : ''}
             return render(request, 'app/detail.html', context)
@@ -18,6 +18,7 @@ def Registration(request):
             context = {'message' : message, 'user' : ''}
             return render(request, 'app/detail.html', context)
         
+        #creates the user and saves to DB
         u = User(username=usern, password=pswd)
         u.save()
 
@@ -112,43 +113,74 @@ def Ratings_Retrieval(request):
         #rating_req=request.POST['rating']
         usern=request.POST['username']
 
-        retrival = Rating.objects.get(pk=usern)
-        message = "Rating"
-        context = {'message' : message, 'rating_req' : retrival}
-        return render(request, 'app/detail.html', context)
+        #If there exists a user with that username
+        if User.objects.filter(username=usern).count()==1: 
+            rated_songs = Rating.objects.filter(username=usern)
+
+            #Has the user has  rated any songs?
+            if rated_songs.count() == 0:
+                #there are no songs that have been rated by this user
+                message = "This user has not rated any songs"
+                context = {'message' : message, 'user' : usern}
+                return render(request, 'app/detail.html', context)
+                ######I THINK WE NEED A NEW HTML FILE TO REPORT THE RETREVIAL
+            
+            else:
+                #the user has rated 1+ song for us to return/show to the user in the HTML
+                context = {'rated_songs' : rated_songs, 'Username' : usern}
+                return render(request, 'app/detail.html', context)
 
     except(KeyError):
         message = "Not Availible"
-        context = {'message' : message, 'rating_req' : ''}
+        context = {'message' : message, 'user' : ''}
         return render(request, 'app/detail.html', context)
 
 
 
-
-#Query the song attribute table
-#??????????????????????????????????
 def Attributes_Retrieval(request):
-    registration_form = Registration_form
-    retrieval_form = Retrieval_form
-    if request.method == 'POST':
-        form = Retrieval_form(request.POST)
-        if form.is_valid():
-            try: 
-                #retrieval_form.output = ""
-                #This may be the bug. Do we use "input" from forms.py or what is in models.py?
-                attributes = Attribute.objects.filter(name=form.cleaned_data.get("input"))
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'attributes': attributes}
-            except Attribute.DoesNotExist:
-                #retrieval_form.output = ""
-                context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-        else:
-            #retrieval_form.output = ""
-            context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
-    else:
-        #retrieval_form.output = ""
-        context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+    try:
+        name =request.POST['artist_name']
 
-    return render(request, 'app/detail.html', context)
+        if Attribute.objects.filter(name).count()==1:
+            #there is an artist for this retrival
+            their_album =request.POST['album']
+            the_genre =request.POST['genre']
+            the_year =request.POST['year']
+            the_record_company =request.POST['record_company']
+
+            context = {'album' : their_album, 'genre' : the_genre, 'year' : the_year, "record_company" : the_record_company }
+            return render(request, 'app/detail.html', context)
+
+    
+    except(KeyError):
+        message = "Not Availible for that Artist"
+        context = {'message' : message, 'artist_name' : ''}
+        return render(request, 'app/detail.html', context)
+
+
+
+# def Attributes_Retrieval(request):
+#     registration_form = Registration_form
+#     retrieval_form = Retrieval_form
+#     if request.method == 'POST':
+#         form = Retrieval_form(request.POST)
+#         if form.is_valid():
+#             try: 
+#                 #retrieval_form.output = ""
+#                 #This may be the bug. Do we use "input" from forms.py or what is in models.py?
+#                 attributes = Attribute.objects.filter(name=form.cleaned_data.get("input"))
+#                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form, 'attributes': attributes}
+#             except Attribute.DoesNotExist:
+#                 #retrieval_form.output = ""
+#                 context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+#         else:
+#             #retrieval_form.output = ""
+#             context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+#     else:
+#         #retrieval_form.output = ""
+#         context = {'registration_form': registration_form, 'retrieval_form': retrieval_form}
+
+#     return render(request, 'app/detail.html', context)
 
 
 

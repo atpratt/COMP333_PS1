@@ -15,7 +15,7 @@ class Attribute(models.Model):
     record_company = models.CharField(max_length = 200, default='SOME STRING')
 
     def __str__(self):
-        return (self.name
+        return (self.artist_name
                 + "" + self.album
                 + "" + self.genre
                 + "" + self.year

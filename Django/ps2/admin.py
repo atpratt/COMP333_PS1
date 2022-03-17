@@ -7,21 +7,21 @@ from .models import Artist
 from .models import Rating
 
 @admin.register(User)
-class UsersAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display = ("username",)
-    search_feilds = ("username",)
+    search_fields = ("username",)
 
 #based on slides we need to register all of the models
 @admin.register(Attribute)
-class AttributesAdmin(admin.ModelAdmin):
+class AttributeAdmin(admin.ModelAdmin):
     list_display = ("artist_name",)
 
 @admin.register(Artist)
-class ArtistsAdmin(admin.ModelAdmin):
+class ArtistAdmin(admin.ModelAdmin):
     list_display = ("song",)
 
 @admin.register(Rating)
-class RatingsAdmin(admin.ModelAdmin):
+class RatingAdmin(admin.ModelAdmin):
     list_display = ("rating",)
     list_display = ("song_id",)
     list_display = ("username_id",)
