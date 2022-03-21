@@ -33,11 +33,15 @@
         <input type="submit" name="Ratings" value="Search username"/>
 
 	</form>
-
+    {% if registration_form.output != 'No rating for this username, Please choose a different user.' %}
+        <p> {{registration_form.output}} </p>
+    {% endif %}
+    
     {% for song in ratings %}
     <p> This user has given {{ song.song.song }} by {{ song.artist.name }} a rating of {{ song.rating  }} </p>
-    {{registration_form.output}}
     {% endfor %}
+
+
 
     <h2> Retrieve Artist Attributes </h2>
     <form method="POST" action="/attributes/">
@@ -48,10 +52,10 @@
         <input type="submit" name="Attributes" value="Search artist"/>
 	</form>
 
+    {{registration_form.output}}
     {% for artist in attributes %}
     <p> {{ astist.artist }}  is a {{ astist.genre }} artist whose most recent album was {{ artist.album }}. </p>
     <p> It was released in {{ artist.year }} through the {{ astist.record_company }} record label.</p>
-    {{registration_form.output}}
     {% endfor %}
 
     </div>
