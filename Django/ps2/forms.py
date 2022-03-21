@@ -12,6 +12,5 @@ class Retrieval_form(forms.Form):
     output = ""
 
     
-
-# class Retrieve_attributes_form(forms.Form):
-#     song = forms.CharField(label="Retrieve: ", max_length=255)
+class Retrieve_attributes_form(forms.Form):
+    song = forms.CharField(label="Retrieve: ", max_length=255)

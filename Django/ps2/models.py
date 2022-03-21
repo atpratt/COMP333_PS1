@@ -7,6 +7,9 @@ class User(models.Model):
     username = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
     password = models.CharField(max_length = 200, default='SOME STRING')
 
+    def __str__(self):
+        return (self.username + "" +  self.password)
+
 class Attribute(models.Model):
     artist_name = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
     album = models.CharField(max_length = 200, default='SOME STRING')
@@ -25,10 +28,16 @@ class Artist(models.Model):
     song = models.CharField(max_length = 200, primary_key = True, default='SOME STRING')
     artist = models.ForeignKey(Attribute, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
 
+    def __str__(self):
+        return (self.song + "" +  self.artist)
+
 class Rating(models.Model):
     username = models.ForeignKey(User, max_length = 200, on_delete=models.CASCADE, default='SOME STRING')
     song = models.ForeignKey(Artist, max_length = 200, on_delete=models.CASCADE,default='SOME STRING')
     rating = models.IntegerField(default=2000)
+
+    def __str__(self):
+        return (self.username + "" +  self.song + "" + self.rating)
 
 
 #unique = true marks them as the primary key
